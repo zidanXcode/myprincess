@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love U Princess</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: linear-gradient(to bottom right, #fff0f5, #ffe4e1);
+      font-family: 'Quicksand', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #e91e63;
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+    }
+    .icon-love {
+      font-size: 2rem;
+      animation: pulse 1.5s infinite;
+      margin: 10px 0;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+    .heart-rain, .emoji-rain {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .heart, .emoji {
+      position: absolute;
+      top: -20px;
+      font-size: 20px;
+      animation: fall 6s linear infinite;
+      opacity: 0.8;
+    }
+    .emoji { font-size: 18px; }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .btn {
+      margin-top: 20px;
+      background: #ffb6c1;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+    .btn:hover {
+      background: #e91e63;
+      transform: scale(1.05);
+    }
+    .bunga {
+      margin-top: 30px;
+      font-size: 2rem;
+      animation: grow 2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes grow {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .surprise {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #d81b60;
+      animation: pop 0.6s ease-out forwards;
+    }
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .doll {
+      font-size: 3rem;
+      margin-top: 10px;
+      animation: wiggle 1s infinite;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-rain" id="heartRain"></div>
+  <div class="emoji-rain" id="emojiRain"></div>
+  <div class="icon-love">💖💗💓</div>
+  <h1>I love you, Princess!</h1>
+  <button class="btn" onclick="showSurprise()">Klik untuk hadiah!</button>
+  <div class="bunga" id="bunga">🌸🌼🌺🌷</div>
+  <div class="surprise" id="surprise">
+    aku sayang banget sama kamu, kamu hadiah terbaik di hidup aku!
+    <div class="doll">🧸</div>
+  </div>
+  <audio id="audio" src="https://files.catbox.moe/dleob6.mp3" preload="auto"></audio>
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 2 + "s";
+      document.getElementById("heartRain").appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    function createEmoji() {
+      const emojiList = ["⭐", "✨", "💞", "💕", "🌟"];
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = 3 + Math.random() * 3 + "s";
+      document.getElementById("emojiRain").appendChild(emoji);
+      setTimeout(() => emoji.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+    setInterval(createEmoji, 600);
+    function showSurprise() {
+      document.getElementById("bunga").style.animation = "grow 2s ease forwards";
+      document.getElementById("surprise").style.display = "block";
+      document.getElementById("audio").play();
+    }
+  </script>
+</body>
+</html>
